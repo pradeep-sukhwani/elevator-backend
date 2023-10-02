@@ -50,7 +50,7 @@ DJANGO_APPS = [
     "rest_framework",
 ]
 
-LOCAL_APPS = []
+LOCAL_APPS = ["elevator"]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 
