@@ -9,7 +9,6 @@ def find_the_closest_elevator(pick_from_floor_number: int, total_number_of_passe
     # total_number_of_floors should be less than or equal to pick_from_floor_number
     # total_number_of_passengers should be less than or equal to capacity_in_person
     # Todo for future case, assign multiple elevators if the number of passengers is more than the capacity of the elevator
-    import pdb; pdb.set_trace()
     elevators_query_set = Elevator.objects.filter(~Q(state__in=[ElevatorState.UNDER_MAINTENANCE, ElevatorState.USER_STOP]),
                                                   ~Q(floors_not_in_use__contains=pick_from_floor_number),
                                                   ~Q(floors_not_in_use__contains=drop_at_floor_number),
