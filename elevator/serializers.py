@@ -82,7 +82,8 @@ class CreateElevatorRequestSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ElevatorRequest
-        fields = ['pick_from_floor_number', 'drop_at_floor_number', 'number_of_passengers', 'stop_elevator']
+        fields = ['id', 'pick_from_floor_number', 'drop_at_floor_number', 'number_of_passengers', 'stop_elevator']
+        read_only_fields = ['stop_elevator']
 
     def validate(self, attrs) -> dict:
         validated_data = super().validate(attrs)
@@ -103,5 +104,10 @@ class CreateElevatorRequestSerializer(serializers.ModelSerializer):
             # Update the state of elevator to USER_STOP
             elevator_object.state = ElevatorState.USER_STOP
             elevator_object.save(update_fields=['state'])
-        else_object = super(CreateElevatorRequestSerializer, self).create(validated_data)
-        return else_object
+        return super(CreateElevatorRequestSerializer, self).create(validated_data)
+
+    def to_representation(self, instance) -> dict:
+        data = super(CreateElevatorRequestSerializer, self).to_representation(instance)
+        data.pop('stop_elevator')
+        data['elevator'] = instance.elevator_id
+        return data
