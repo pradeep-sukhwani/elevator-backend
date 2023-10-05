@@ -3,7 +3,7 @@
 1. Take a clone of this repo
 2. Setup Postgres
 3. Setup Python 3.11.1
-4. (Optional) Setup [Pyenv](https://github.com/pyenv/pyenv)https://github.com/pyenv/pyenv and [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)https://github.com/pyenv/pyenv-virtualenv:
+4. (Optional) Setup [Pyenv](https://github.com/pyenv/pyenv) and [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv):
 5. (Optional) Make sure that you are using virtual-env before installing dependencies
 ### Setup `.env` file
 - Create `.env` in the root directory and add the following
