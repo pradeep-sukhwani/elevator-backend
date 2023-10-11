@@ -40,9 +40,9 @@ class ElevatorSerializer(serializers.ModelSerializer):
         if elevator_requests.exists():
             elevator_request = elevator_requests.first()
             if elevator_request.pick_from_floor_number > elevator_request.drop_at_floor_number:
-                return "Going Up"
-            else:
                 return "Going Down"
+            else:
+                return "Going Up"
         return None
 
     def validate(self, attrs) -> dict:
@@ -101,6 +101,8 @@ class CreateElevatorRequestSerializer(serializers.ModelSerializer):
         elevator_object = validated_data.get('elevator')
         stop_elevator = validated_data.pop('stop_elevator', None)
         if stop_elevator:
+            # Update the elevator request as completed
+            validated_data['is_completed'] = True
             # Update the state of elevator to USER_STOP
             elevator_object.state = ElevatorState.USER_STOP
             elevator_object.save(update_fields=['state'])
